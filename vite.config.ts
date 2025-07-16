@@ -41,7 +41,12 @@ export default defineConfig({
         'vue',
         VueRouterAutoImports,
         '@vueuse/core'
-      ]
+      ],
+      // dts: './auto-imports.d.ts', // 生成对应文件后可注释
+      eslintrc: {
+        enabled: false, // 启用 ESLint 配置生成
+        filepath: './.eslintrc-auto-import.json' // 生成的 ESLint 配置文件路径
+      }
     }),
     Components({
       /* options */
