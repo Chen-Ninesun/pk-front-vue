@@ -11,6 +11,7 @@ declare module 'vue' {
     404: typeof import('./src/components/404.vue')['default']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Menu: typeof import('./src/components/Menu.vue')['default']
     ReloadPrompt: typeof import('./src/components/ReloadPrompt.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

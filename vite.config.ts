@@ -86,6 +86,11 @@ export default defineConfig({
       enable: false
     })
   ],
+  server: {
+    watch: {
+      usePolling: true // 修复HMR热更新失效
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
