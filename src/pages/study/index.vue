@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <h1>Welcome About</h1>
-  </div>
+  <div>study</div>
 </template>
 
 <script setup></script>
 
 <style lang="scss" scoped></style>
+
 <!-- <route lang="yaml">
 meta:
-  layout: home
+  layout: study
 </route> -->
