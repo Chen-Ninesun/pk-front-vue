@@ -1,5 +1,5 @@
 <template>
-  <div class="flex bg-gray">
+  <div class="flex">
     <router-link class="item" to="/">产品</router-link>
     <a class="item" href="http://www.imooc.com" target="_blank">社区</a>
     <router-link class="item" to="/study">学习</router-link>
@@ -16,7 +16,7 @@
     @apply font-500;
     &:after {
       // content: '';
-      @apply content-empty absolute bg-gray-100 w-8 h-1 bottom-0 left-[calc(50%-1rem)];
+      @apply content-empty absolute bg-gray-100 w-8 h-[1px] bottom-0 left-[calc(50%-1rem)];
     }
   }
 }
