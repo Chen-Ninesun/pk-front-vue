@@ -14,6 +14,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "allowJs": true
+    "allowJs": true,
+    "noImplicitAny": false, // 允许 any 类型
   },
 }

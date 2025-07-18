@@ -1,7 +1,7 @@
 <template>
-  <div class="fixed top-0 w-full" :class="{ 'bg-black opacity-30 shadow-lg': y > 0 }">
+  <div class="fixed top-0 w-full z-50" :class="{ 'bg-black opacity-30 shadow-lg': y > 0 }">
     <Container>
-      <img src="/public/512x512.png" alt="" class="w-14 h-full" />
+      <img :src="icon" alt="" class="w-14 h-full" />
       <Menu></Menu>
     </Container>
   </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import icon from '../../public/512x512.png'
 const { y } = useWindowScroll()
 </script>
 
