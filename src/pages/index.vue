@@ -1,5 +1,12 @@
 <template>
   <Swiper :items="items" height="h-100"></Swiper>
+  <Card
+    :image="bg"
+    image-type="rounded"
+    title="传播技术的种子"
+    subTitle="让技术没有门槛，让沟通没有障碍"
+    :border="true"
+  ></Card>
 </template>
 
 <script setup lang="ts">
