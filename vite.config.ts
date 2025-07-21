@@ -40,7 +40,8 @@ export default defineConfig({
         // presets
         'vue',
         VueRouterAutoImports,
-        '@vueuse/core'
+        '@vueuse/core',
+        'pinia'
       ],
       // dts: './auto-imports.d.ts', // 生成对应文件后可注释
       eslintrc: {

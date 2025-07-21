@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-import './assets/main.css'
+import './assets/main.scss'
 // import '@unocss/reset/normalize.css'
 // 使用Unocss的样式重置
 import '@unocss/reset/tailwind.css'

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div :class="['flex']">
     <router-link class="item" to="/">产品</router-link>
     <a class="item" href="http://www.imooc.com" target="_blank">社区</a>
     <router-link class="item" to="/study">学习</router-link>
@@ -7,11 +7,19 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { PropType } from 'vue'
+
+defineProps({
+  // algin: {
+  //   type: String as PropType<'vertical' | 'horizanal'>
+  // }
+})
+</script>
 
 <style scoped lang="scss">
 .item {
-  @apply relative text-white text-xl px-8 py-2 font-300 cursor-pointer;
+  @apply relative text-white text-xl px-8 py-2 font-300 cursor-pointer lt-sm:self-start;
   &:hover {
     @apply font-500;
     &:after {

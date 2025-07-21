@@ -18,8 +18,8 @@
         >
           <Container class="h-full">
             <div class="flex flex-col justify-center items-start">
-              <p class="text-4xl font-bold text-white">{{ item.title }}</p>
-              <p class="text-xl text-gray-100 pt-4">{{ item.subTitle }}</p>
+              <p class="lt-sm:text-xl text-4xl font-bold text-white">{{ item.title }}</p>
+              <p class="text-sm sm:text-xl text-gray-100 pt-4">{{ item.subTitle }}</p>
             </div>
           </Container>
         </div>

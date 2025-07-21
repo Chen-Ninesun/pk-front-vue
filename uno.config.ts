@@ -1,7 +1,7 @@
 // uno.config.ts
 import { defineConfig } from 'unocss'
 // import presetWind from '@unocss/preset-wind'
-import { presetWind, presetIcons, transformerDirectives } from 'unocss'
+import { presetWind, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   // 全局自定义样式类
@@ -17,5 +17,8 @@ export default defineConfig({
       }
     })
   ],
-  transformers: [transformerDirectives()]
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup() // 支持媒介查询()写法
+  ]
 })
