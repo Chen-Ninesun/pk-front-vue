@@ -68,8 +68,8 @@
 </template>
 
 <script setup lang="ts">
-import wechat from '@/assets/images/wechat.jpg'
-import sina from '@/assets/images/sina.jpg'
+import wechat from '@/assets/images/image.jpg'
+import sina from '@/assets/images/image.jpg'
 
 interface LinkType {
   title: string

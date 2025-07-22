@@ -20,5 +20,10 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
     transformerVariantGroup() // 支持媒介查询()写法
-  ]
+  ],
+  theme: {
+    colors: {
+      'main': '#4e98f4'
+    }
+  }
 })
