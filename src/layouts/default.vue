@@ -17,7 +17,7 @@
           <div v-else class="i-ic-round-menu"></div>
         </Transition>
       </div>
-      <Menu v-show="show" class="lt-sm:(absolute top-14 right-0 w-full flex-col)"></Menu>
+      <Menu v-show="show"></Menu>
     </Container>
   </div>
   <!-- 页面切换 -->
