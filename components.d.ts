@@ -13,6 +13,7 @@ declare module 'vue' {
     Container: typeof import('./src/components/Container.vue')['default']
     DefaultFooter: typeof import('./src/components/DefaultFooter.vue')['default']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    FreeSwiper: typeof import('./src/components/FreeSwiper.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Menu: typeof import('./src/components/Menu.vue')['default']
     MobileNavbar: typeof import('./src/components/MobileNavbar.vue')['default']

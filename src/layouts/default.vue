@@ -22,7 +22,6 @@
   </div>
   <!-- 页面切换 -->
   <router-view></router-view>
-  <div class="h-[800px]"></div>
   <!-- 底部导航 -->
   <div>
     <div class="mobile-hide">

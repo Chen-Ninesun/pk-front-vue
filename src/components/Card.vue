@@ -1,13 +1,13 @@
 <template>
-  <div :class="cardClass">
+  <div :class="cardClass" class="card">
     <div :class="imageClass" :style="{ backgroundImage: `url(${image})` }" v-if="image"></div>
     <div v-else :class="[icon, 'w-20 h-20']"></div>
     <div v-if="title || subTitle" :class="titleClass">
-      <div class="text-lg text-dark-300 font-bold pb-2">{{ title }}</div>
-      <div class="text-sm text-dark-100 font-300">{{ subTitle }}</div>
+      <p class="text-lg text-dark-300 font-bold pb-2">{{ title }}</p>
+      <p class="text-sm text-dark-100 font-300">{{ subTitle }}</p>
     </div>
+    <slot :item="{ image, icon, title, subTitle, url }"></slot>
   </div>
-  <slot :item="{ image, icon, title, subTitle, url }"></slot>
 </template>
 
 <script setup lang="ts">

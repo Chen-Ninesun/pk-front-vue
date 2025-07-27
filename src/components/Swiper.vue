@@ -58,6 +58,8 @@ const props = defineProps({
 
 const modules = [Navigation, Pagination]
 
+const emits = defineEmits(['change'])
+
 function getClassAndStyle(str: string) {
   return {
     style: /(rem|em|px)/.test(props.height) ? { height: str } : {},
@@ -68,8 +70,9 @@ function getClassAndStyle(str: string) {
 const onSwiper = (swiper: SwiperTypes) => {
   console.log(swiper)
 }
-const onSlideChange = () => {
-  console.log('slide change')
+
+const onSlideChange = (e: SwiperTypes) => {
+  emits('change', e)
 }
 </script>
 
