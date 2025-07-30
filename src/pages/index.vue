@@ -103,6 +103,26 @@
         <div class="i-mdi:arrow-right-thin text-4xl"></div>
       </a>
     </Container>
+    <Container class="py-4">
+      <div class="w-2/3 h-[400px]">
+        <div class="grid grid-cols-4 grid-rows-3 gap-4 p-4 h-full">
+          <div class="border col-span-4 row-span-1"></div>
+          <div class="border col-span-2 row-span-2"></div>
+          <div class="border col-span-2 row-span-1"></div>
+          <div class="border"></div>
+          <div class="border"></div>
+        </div>
+      </div>
+      <div class="w-1/3 flex flex-col justify-center self-stretch">
+        <div class="text-2xl font-bold pb-4">讲师团队</div>
+        <div class="text-sm text-gray-400">
+          <div>一线大厂、资深技术大牛10名</div>
+          <div>技术专家不定期坐镇直播间</div>
+          <div>前端、Java、Python工程师对应不同用户开发需求</div>
+          <div>年薪百万不是梦，加入我们!</div>
+        </div>
+      </div>
+    </Container>
     <!-- 合作伙伴 -->
     <Container>
       <FreeSwiper :items="partners"></FreeSwiper>
@@ -123,6 +143,7 @@ import project from '@/assets/lessons/project.jpeg'
 import book from '@/assets/lessons/book.jpeg'
 import blog from '@/assets/lessons/blog.png'
 import type Swiper from 'swiper'
+import Container from '@/components/Container.vue'
 
 const store = useThemeStore()
 
