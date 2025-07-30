@@ -18,11 +18,19 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 import { viteMockServe } from 'vite-plugin-mock'
 
+import Markdown from 'unplugin-vue-markdown/vite'
+import { unheadVueComposablesImports } from '@unhead/vue'
+import prism from 'markdown-it-prism'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    VueRouter(),
-    vue(),
+    VueRouter({
+      extensions: ['.vue', '.md']
+    }),
+    vue({
+      include: [/\.vue$/, /\.md$/] // <-- allows Vue to compile Markdown files
+    }),
     vueJsx(),
     UnoCSS(),
     AutoImport({
@@ -41,7 +49,8 @@ export default defineConfig({
         'vue',
         VueRouterAutoImports,
         '@vueuse/core',
-        'pinia'
+        'pinia',
+        unheadVueComposablesImports
       ],
       // dts: './auto-imports.d.ts', // 生成对应文件后可注释
       eslintrc: {
@@ -55,7 +64,11 @@ export default defineConfig({
         ElementPlusResolver() // 集成 Element-Plus
       ],
       directoryAsNamespace: true, // 将目录名作为前缀 user/UserDialog -> UserUserDialog
-      collapseSamePrefixes: true // 合并相同前缀 user/UserDialog -> UserDialog
+      collapseSamePrefixes: true, // 合并相同前缀 user/UserDialog -> UserDialog
+      // allow auto load markdown components under `./src/components/`
+      extensions: ['vue', 'md'],
+      // allow auto import and register components used in markdown
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
     }),
     Layouts({
       layoutsDirs: 'src/layouts',
@@ -85,6 +98,12 @@ export default defineConfig({
       // default
       mockPath: 'mock',
       enable: false
+    }),
+    Markdown({
+      /* options */
+      markdownItOptions: {},
+      headEnabled: true,
+      markdownItUses: [prism]
     })
   ],
   server: {
