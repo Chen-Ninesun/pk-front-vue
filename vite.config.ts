@@ -97,7 +97,7 @@ export default defineConfig({
     viteMockServe({
       // default
       mockPath: 'mock',
-      enable: false
+      enable: true
     }),
     Markdown({
       /* options */

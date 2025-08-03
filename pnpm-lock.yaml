@@ -17,6 +17,9 @@ importers:
       '@vueuse/core':
         specifier: ^13.5.0
         version: 13.5.0(vue@3.5.17(typescript@5.4.5))
+      axios:
+        specifier: ^1.11.0
+        version: 1.11.0(debug@4.4.1)
       element-plus:
         specifier: ^2.10.4
         version: 2.10.4(vue@3.5.17(typescript@5.4.5))
@@ -1778,8 +1781,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@1.10.0:
-    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
+  axios@1.11.0:
+    resolution: {integrity: sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==}
 
   babel-plugin-polyfill-corejs2@0.4.14:
     resolution: {integrity: sha512-Co2Y9wX854ts6U8gAAPXfn0GmAyctHuK8n0Yhfjd6t30g7yvKjspvvOo9yG+z52PZRgFErt7Ka2pYnXCjLKEpg==}
@@ -2456,6 +2459,10 @@ packages:
 
   form-data@4.0.3:
     resolution: {integrity: sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==}
+    engines: {node: '>= 6'}
+
+  form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
   from@0.1.7:
@@ -6247,10 +6254,10 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@1.10.0(debug@4.4.1):
+  axios@1.11.0(debug@4.4.1):
     dependencies:
       follow-redirects: 1.15.9(debug@4.4.1)
-      form-data: 4.0.3
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -7125,6 +7132,14 @@ snapshots:
       mime-types: 2.1.35
 
   form-data@4.0.3:
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
+      mime-types: 2.1.35
+
+  form-data@4.0.4:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -9010,7 +9025,7 @@ snapshots:
 
   wait-on@8.0.3(debug@4.4.1):
     dependencies:
-      axios: 1.10.0(debug@4.4.1)
+      axios: 1.11.0(debug@4.4.1)
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
