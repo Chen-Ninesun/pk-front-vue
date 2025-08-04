@@ -1,8 +1,8 @@
 <template>
   <div class="pb-15">
-    <Swiper :items="items" :height="36 * store.rate + 'rem'"></Swiper>
-    <!-- 标题 -->
+    <Swiper :items="homeStore.swipers" :height="36 * store.rate + 'rem'"></Swiper>
     <Container>
+      <!-- 标题 -->
       <div class="py-4">
         <div class="text-2xl">“</div>
         <div class="text-2xl font-bold pb-4">传播技术的种子 让分享带来价值</div>
@@ -19,20 +19,21 @@
     </Container>
     <Container>
       <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full lt-sm:px-4">
+        <!-- for遍历的内容：课程 -->
         <a
-          href="item.url"
+          v-for="(item, index) in homeStore.projects"
+          :href="item.url"
           target="_blank"
-          class="box flex group transition-all hover:(bg-sky-500 shadow-lg text-white transform-translate-y--1)"
-          v-for="(item, index) in projects"
           :key="index"
+          class="flex group transition-all hover:(bg-sky-500 shadow-lg text-white transform-translate-y--1)"
         >
           <Card
-            class="w-full"
+            class="w-full rounded-0 card"
             :icon="item.icon"
-            image-type="default"
+            image-type="rounded"
             :title="item.title"
-            :subTitle="item.subTitle"
-            :border="true"
+            :sub-title="item.subTitle"
+            border
           >
             <template #default>
               <div
@@ -46,7 +47,6 @@
         </a>
       </div>
     </Container>
-    <!-- 标题 -->
     <Container class="mt-5">
       <div class="py-4">
         <div class="text-2xl font-bold pb-4">官方课程</div>
@@ -57,7 +57,13 @@
     </Container>
     <Container>
       <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full lt-sm:px-4">
-        <a href="item.url" target="_blank" v-for="(item, index) in lessons" :key="index">
+        <a
+          :href="item.url"
+          target="_blank"
+          v-for="(item, index) in homeStore.courses"
+          :key="index"
+          class="flex"
+        >
           <Card
             class="w-full rounded-3 transition-all hover:(transform-translate-y--1 shadow-lg)"
             :image="item.image"
@@ -76,206 +82,75 @@
         </a>
       </div>
     </Container>
-    <!-- 标题 -->
     <Container class="mt-5">
       <div class="py-4">
-        <div class="text-2xl font-bold pb-4">官方课程</div>
+        <div class="text-2xl font-bold pb-4">课程项目展示</div>
         <div class="flex justify-between items-center">
-          <div class="text-sm text-gray-400">toimc官方出品，经典内容设计，匠心细致，专业讲解。</div>
+          <div class="text-sm text-gray-400">项目及架构展示，核心主流技术</div>
         </div>
       </div>
     </Container>
     <Container class="w-full text-gray-400">
       <Swiper
-        :items="items"
-        :height="28 * store.rate + 'rem'"
-        class="w-2/3"
+        :items="homeStore.swiperProjects"
+        :height="(width > 640 ? 28 : 40) * store.rate + 'rem'"
+        class="w-full sm:w-2/3"
         @change="handleSwiperChange"
       ></Swiper>
-      <a
-        :href="selectItem.url"
-        target="_blank"
-        class="w-1/3 bg-coolGray-700 self-stretch flex flex-col justify-center px-4"
+      <div
+        class="lt-sm:display-none sm:(w-1/3) bg-coolgray-700 self-stretch flex flex-col justify-center px-4"
       >
-        <div class="text-2xl font-bold pb-4 text-gray-100">{{ selectItem.title }}</div>
-        <div class="text-sm">{{ selectItem.subTitle }}</div>
-        <div class="flex items-start justify-between mb-4">查看更多</div>
-        <div class="i-mdi:arrow-right-thin text-4xl"></div>
-      </a>
-    </Container>
-    <Container class="py-4">
-      <div class="w-2/3 h-[400px]">
-        <div class="grid grid-cols-4 grid-rows-3 gap-4 p-4 h-full">
-          <div class="border col-span-4 row-span-1"></div>
-          <div class="border col-span-2 row-span-2"></div>
-          <div class="border col-span-2 row-span-1"></div>
-          <div class="border"></div>
-          <div class="border"></div>
-        </div>
-      </div>
-      <div class="w-1/3 flex flex-col justify-center self-stretch">
-        <div class="text-2xl font-bold pb-4">讲师团队</div>
-        <div class="text-sm text-gray-400">
-          <div>一线大厂、资深技术大牛10名</div>
-          <div>技术专家不定期坐镇直播间</div>
-          <div>前端、Java、Python工程师对应不同用户开发需求</div>
-          <div>年薪百万不是梦，加入我们!</div>
-        </div>
+        <a v-if="selectItem" :href="selectItem.url" target="_blank">
+          <div class="text-2xl font-bold pb-4 text-gray-100">{{ selectItem.title }}</div>
+          <div class="text-sm">{{ selectItem.subTitle }}</div>
+          <div class="flex items-center justify-between mb-4">查看更多</div>
+          <div class="i-mdi:arrow-right-thin text-4xl"></div>
+        </a>
       </div>
     </Container>
-    <!-- 合作伙伴 -->
+    <Container>
+      <div class="text-2xl font-bold mt-8">合作伙伴</div>
+    </Container>
     <Container>
       <FreeSwiper :items="partners"></FreeSwiper>
     </Container>
+    <Container class="py-4">
+      <div class="w-2/3 h-[300px] sm:h-[400px]">
+        <div class="grid grid-cols-4 grid-rows-3 h-full gap-4 p-4">
+          <div class="border col-start-1 col-span-4 row-start-1 row-span-1">1</div>
+          <div class="border col-start-1 col-span-2 row-start-2 row-span-2">2</div>
+          <div class="border col-start-3 col-span-2 row-start-2 row-span-1">3</div>
+          <div class="border col-start-3 col-span-1 row-start-3 row-span-1">4</div>
+          <div class="border col-start-4 col-span-1 row-start-3 row-span-1">5</div>
+        </div>
+      </div>
+      <div class="w-1/3 self-stretch flex flex-col justify-center">
+        <div class="text-2xl font-bold pb-4">讲师团队</div>
+        <div class="text-sm text-gray-400">
+          <p>一线大厂、资深技术大牛10名</p>
+          <p>技术专家不定期坐镇直播间</p>
+          <p>前端、Java、Python工程师对应不同用户开发需求</p>
+          <p>年薪百万不是梦，加入我们!</p>
+        </div>
+      </div>
+    </Container>
+    <!-- <ReloadPrompt></ReloadPrompt> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import type { SwiperItemType } from '@/components/types'
-// import { registerSW } from 'virtual:pwa-register'
-import bg from '@/assets/images/bg.png'
-import { useThemeStore } from '@/store/useThemeStore'
+// import type { SwiperItemType } from '@/components/types'
+import { registerSW } from 'virtual:pwa-register'
+import { useThemeStore } from '../store/useThemeStore'
+import { useHomeStore } from '../store/useHomeStore'
 
-import front from '@/assets/lessons/front-end.jpeg'
-import nestjs from '@/assets/lessons/nestjs.jpeg'
-import small from '@/assets/lessons/6.jpeg'
-import project from '@/assets/lessons/project.jpeg'
-import book from '@/assets/lessons/book.jpeg'
-import blog from '@/assets/lessons/blog.png'
-import type Swiper from 'swiper'
-import { getHomeData } from '@/api/home'
-
-onBeforeMount(async () => {
-  const res = await getHomeData()
-  console.log('🚀 ~ res:', res)
-})
+import type { Swiper as SwiperType } from 'swiper'
 
 const store = useThemeStore()
+const homeStore = useHomeStore()
 
-const items: SwiperItemType[] = [
-  {
-    image: bg,
-    title: '传播技术的种子',
-    subTitle: '让技术没有门槛，让沟通没有障碍',
-    url: 'https://class.imooc.com/'
-  },
-  {
-    image: bg,
-    title: '传播技术的种子1',
-    subTitle: '让技术没有门槛，让沟通没有障碍',
-    url: 'https://class.imooc.com/'
-  },
-  {
-    image: bg,
-    title: '传播技术的种子2',
-    subTitle: '让技术没有门槛，让沟通没有障碍',
-    url: 'https://class.imooc.com/'
-  },
-  {
-    image: bg,
-    title: '传播技术的种子3',
-    subTitle: '让技术没有门槛，让沟通没有障碍',
-    url: 'https://class.imooc.com/'
-  }
-]
-
-const selectItem = ref(items[0])
-
-const projects = [
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  },
-  {
-    title: 'AI人工智能',
-    subTitle: 'AIGC | ChatGPT | LLM',
-    icon: 'i-streamline-plump:web-remix',
-    url: 'https://class.imooc.com/sale/pgmaths?mc_marking=22f1a4480f55bcb6a666d3563d26cbf5&mc_channel=syjptx14'
-  }
-]
-
-const lessons = [
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '技术成长&值也颇具“双高体系，深度打通”全栈 + 全流程 + 多端+ 提效+AI赋能',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: front
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '技术成长&值也颇具“双高体系，深度打通”全栈 + 全流程 + 多端+ 提效+AI赋能',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: nestjs
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '技术成长&值也颇具“双高体系，深度打通”全栈 + 全流程 + 多端+ 提效+AI赋能',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: small
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '技术成长&值也颇具“双高体系，深度打通”全栈 + 全流程 + 多端+ 提效+AI赋能',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: project
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '技术成长&值也颇具“双高体系，深度打通”全栈 + 全流程 + 多端+ 提效+AI赋能',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: book
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '技术成长&值也颇具“双高体系，深度打通”全栈 + 全流程 + 多端+ 提效+AI赋能',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: blog
-  }
-]
-
-function handleSwiperChange(e: Swiper) {
-  console.log('🚀 ~ handleSwiperChange ~ e:', e)
-  const index = e.activeIndex
-  selectItem.value = items[index]
-}
+const { width } = useWindowSize()
+const selectItem = ref()
 
 const partners = ref([
   'https://wayearn.static.toimc.com/partner/logo1.png',
@@ -285,28 +160,34 @@ const partners = ref([
   'https://wayearn.static.toimc.com/partner/logo6.png',
   'https://wayearn.static.toimc.com/partner/logo7.png'
 ])
-// onMounted(() => {
-//   registerSW({
-//     immediate: true,
-//     // onNeedRefresh() {
-//     //   console.log('Need Refresh!')
-//     // },
-//     onRegisteredSW(_url, registration) {
-//       setInterval(() => {
-//         registration?.update()
-//       }, 3600 * 1000)
-//     }
-//   })
-// })
+
+onBeforeMount(async () => {
+  await homeStore.fetchData()
+  selectItem.value = homeStore.swipers[0]
+})
+
+onMounted(() => {
+  registerSW({
+    immediate: true,
+    onRegisteredSW(_url, registration) {
+      setInterval(() => {
+        registration && registration.update()
+      }, 3600 * 1000)
+    }
+  })
+})
+
+function handleSwiperChange(e: SwiperType) {
+  const index = e.activeIndex
+  selectItem.value = homeStore.swipers[index]
+}
 </script>
 
-<style lang="scss" scoped>
-.box {
+<style scoped lang="scss">
+:deep(.card) {
   &:hover {
-    :deep(.card) {
-      p {
-        color: white;
-      }
+    p {
+      color: white;
     }
   }
 }

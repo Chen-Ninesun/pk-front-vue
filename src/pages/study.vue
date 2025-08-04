@@ -11,7 +11,7 @@
         <Container>
           <div class="flex justify-between w-full">
             <!-- 分类 -->
-            <ul class="flex types text-white" v-if="$route.name === '/study/cart'">
+            <ul class="flex types text-white" v-if="route.name === '/study/cart'">
               <li class="active item">购物车</li>
             </ul>
             <ul class="flex types text-white" v-else>
@@ -48,6 +48,7 @@ import { useThemeStore } from '@/store/useThemeStore'
 import bg from '@/assets/images/bg.png'
 
 const store = useThemeStore()
+const route = useRoute()
 
 const items: SwiperItemType[] = [
   {
